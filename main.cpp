@@ -1,5 +1,5 @@
-#include "Parser.hpp"
-#include "Dependencies.hpp"
+#include "include/Parser.hpp"
+#include "include/Dependencies.hpp"
 
 int main(int argc, char *argv[])
 {
