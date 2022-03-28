@@ -1,4 +1,12 @@
-# Restore
+# iRestore
+
+Compiling:
+```C++
+make
+```
+
+All checkm8 compatible devices are supported ig?
+
 
 ```Usage
  Options: 
@@ -14,3 +22,7 @@
 	-p,		--pwn Pwn      the device and remove signature checks.
 	-s,		--ramdisk      Just boot ssh ramdisk. THIS WILL NOT DOWNGRADE THE DEVICE!!
   ```
+
+
+# Why?
+Inferius was not working for me so i made my own :)
