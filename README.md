@@ -19,7 +19,7 @@ All checkm8 compatible devices are supported ig?
 	-u,		--update       Just update don't wipe user data.
 	-r,		--restore      Wipe everything from Nand and put new firmware on it.
 	-a,		--bootargs     Specify your own iBoot boot args.
-	-p,		--pwn Pwn      the device and remove signature checks.
+	-p,		--pwn 	       Pwn the device and remove signature checks.
 	-s,		--ramdisk      Just boot ssh ramdisk. THIS WILL NOT DOWNGRADE THE DEVICE!!
   ```
 
