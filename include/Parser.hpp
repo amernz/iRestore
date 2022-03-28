@@ -92,16 +92,16 @@ Parsers string;
 static struct option longopts[] = {
   { "help",         no_argument      , NULL , 'h' },
   { "ipsw",         required_argument, NULL , 'f' },
-  { "dependencies", no_argument,	   NULL , 'c' },
+  { "dependencies", no_argument      , NULL , 'c' },
   { "identifier",   required_argument, NULL , 'd' },
   { "version",      required_argument, NULL , 'i' },
   { "board",        required_argument, NULL , 'b' },
   { "ticket",       required_argument, NULL , 't' },
-  { "ecid",		    required_argument, NULL , 'e' }, // ecid isn't working or sum shi
-  { "update",		required_argument, NULL , 'u' },
-  { "restore", 		required_argument, NULL , 'r' },
-  { "pwn",          no_argument,       NULL , 'p' },
-  { "ramdisk", 	    no_argument,	   NULL , 's' },
+  { "ecid",         required_argument, NULL , 'e' }, // ecid isn't working or sum shi
+  { "update",	    required_argument, NULL , 'u' },
+  { "restore", 	    required_argument, NULL , 'r' },
+  { "pwn",          no_argument      , NULL , 'p' },
+  { "ramdisk", 	    no_argument      , NULL , 's' },
   { NULL, 0, NULL, 0 }
 };
 
