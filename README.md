@@ -1,8 +1,7 @@
 # Restore
 
-# Usage:
 ```Usage
-  
+ Options: 
         -f,		--ipsw         Drag and drop the ipsw file of the version you are downgrading to. This should be the same as the version you are going to specify.
         -c,		--dependencies Check the dependencies needed. Automatically installs if not found.
         -t,		--ticket       Drag and drop the APticket blob file of the device. [IOS VERSION DOES NOT MATTER!!]
