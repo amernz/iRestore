@@ -1,3 +1,6 @@
+
+/* Copyright (c) 2022 Dr238 */
+
 #include "include/Parser.hpp"
 #include "include/Dependencies.hpp"
 
