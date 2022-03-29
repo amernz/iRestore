@@ -8,6 +8,8 @@ Compiling:
 make
 ```
 
+# No one but YOU is responsible for what happens with the device :)  
+
 All checkm8 compatible devices are supported ig?
 
 
