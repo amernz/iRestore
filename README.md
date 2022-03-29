@@ -21,7 +21,7 @@ All checkm8 compatible devices are supported ig?
 	-b,		--board        Boardconfig of the device e.g. j71bap.
 	-u,		--update       Just update don't wipe user data.
 	-r,		--restore      Wipe everything from Nand and put new firmware on it.
-	-a,		--bootargs     Specify your own iBoot boot args.
+	-a,		--bootargs     Specify your own iBoot boot args. For more bootargs check: https://www.theiphonewiki.com/wiki/Boot-args_(iBoot_variable)
 	-p,		--pwn 	       Pwn the device and remove signature checks. This is required so first just hit this opt (or -c)
 	-s,		--ramdisk      Just boot ssh ramdisk. THIS WILL NOT DOWNGRADE THE DEVICE!!
   ```
