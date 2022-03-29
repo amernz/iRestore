@@ -3,6 +3,7 @@
 
 #include "include/Parser.hpp"
 #include "include/Dependencies.hpp"
+#include "include/Pwn.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -40,8 +41,8 @@ int main(int argc, char *argv[])
 			Check::Dependencies();
 			return 0;
 		case 'p':
-			std::cerr << "Coming soon.." << '\n';
-			return -1;
+			Pwn::Device(VendorID, ProductID);
+			return 0;
 		case 's':
 			std::cerr << "Coming soon.." << '\n';
 			return -1;
@@ -174,7 +175,7 @@ sleep(2);
 std::cout << RED << "Going to restore the device. If you want to stop now's your chance." << RESET << '\n';
 sleep(1);
 
-system("cp -v ../../Resources/futurerestore .");
+system("cp -v ../../Resource/futurerestore .");
 
 for(auto &i : cellular){
 	if(identifier == i){
