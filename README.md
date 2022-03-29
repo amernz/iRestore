@@ -28,5 +28,5 @@ All checkm8 compatible devices are supported ig?
 
 
 # Why?
-Inferius was not working for me so i made my own :)
+Inferius was not working for me so i made my own :)  
 But still. Try out inferius first i think this one is a bit messy?
