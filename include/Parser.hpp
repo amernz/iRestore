@@ -80,6 +80,7 @@ struct firmware
 	std::string RRamdisk;
 	std::string URamdisk;
 	std::string rdpath;
+	std::string RestoreLogo;
 };
 
 struct FirmwareKeys
@@ -182,6 +183,25 @@ system((std::string("cp -v ipswdir/Firmware/all_flash/") + ipsw.DeviceTree + " .
 return ipsw.DeviceTree;
 }
 
+std::string GetRestoreLogo()
+{
+std::ifstream GetLogo("Keys.html");
+std::string logo;
+
+while(getline(GetLogo, logo))
+{
+	if(logo.find("keypage-applelogo") != std::string::npos)
+	{
+		logo.erase(0, 126);
+		auto find = logo.find(string.RmSpan);
+		logo.erase(find, logo.length());
+		ipsw.RestoreLogo = logo;
+	}
+}
+return ipsw.RestoreLogo;
+}
+	
+	
 int Manifest(std::string file)
 {
 mkdir((std::string("WD_Restore_") + identifier + "_" + version).c_str(), S_IRWXU);
