@@ -211,6 +211,16 @@ void Dependencies() {
 #endif
   }
 
+  std::ifstream python("/usr/bin/python");
+  if (!python) {
+#if defined(__APPLE__)
+    std::cout << "[i] python not found..." << '\n';
+#endif
+#if defined(__linux__)
+    std::cout << "[i] Python not found, please install it using your package manager." << '\n';
+#endif
+  }
+
   std::cout << "[i] Done!" << '\n';
 }
 
