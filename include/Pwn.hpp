@@ -35,7 +35,15 @@ namespace Pwn {
   //
     	auto A11 = strstr((char*)dev->serialnumber, "8015");
   // for t8015
-    chdir("Resources");
+
+  chdir("Resources");
+
+if defined(__APPLE__)
+	std::string ipwnder = "./ipwnder_macosx -p";
+#endif
+#if defined(__linux__)
+	std::string ipwnder = "./ipwndfu/ipwndfu -p";
+#endif
 
   std::cout << "[i] Please unplug and Re-Plug the device.." << '\n';
 
@@ -48,55 +56,55 @@ namespace Pwn {
   if(A10 != NULL)
   {
   	Info("Found A10 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
-  	system("./ipwnder_macosx -p");
+  	system(ipwnder.c_str());
   	return 0;
   }
   else if(A9 != NULL)
   {
   	Info("Found A9 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
-  	system("./ipwnder_macosx -p");
+  	system(ipwnder.c_str());
   	return 0;
   }
   else if(a9 != NULL)
   {
   	Info("Found A9 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
-  	system("./ipwnder_macosx -p");
+  	system(ipwnder.c_str());
   	return 0;
   }
   else if(!A8)
   {
   	Info("Found A8 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
-  	system("./ipwnder_macosx -p");
+  	system(ipwnder.c_str());
   	return 0;
   }
   else if(!A7)
   {
   	Info("Found A7 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
-  	system("./ipwnder_macosx -p");
+  	system(ipwnder.c_str());
   	return 0;
   }
   else if(!A6)
   {
   	Info("Found A6 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
-  	system("./ipwnder_macosx -p");
+  	system(ipwnder.c_str());
   	return 0;
   }
   else if(!A4)
   {
   	Info("Found A4 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
-  	system("./ipwnder_macosx -p");
+  	system(ipwnder.c_str());
   	return 0;
   }
   else if(!idk1)
   {
   	Info("Found 8922 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
-  	system("./ipwnder_macosx -p");
+  	system(ipwnder.c_str());
   	return 0;
   }
   else if(!idk2)
   {
   	Info("Found 8920 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
-  	system("./ipwnder_macosx -p");
+  	system(ipwnder.c_str());
   	return 0;
   }
   else if(!A11)

@@ -9,6 +9,7 @@
 #define PARSER_HPP
 #include <cstdlib>
 #include <iostream>
+#include <algorithm>
 #include <getopt.h>
 #include <fstream>
 #include <string>
