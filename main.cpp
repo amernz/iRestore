@@ -110,7 +110,8 @@ std::cout << "[i] Done." << "\n\n";
 std::cout << "[3] Patching amfi.." << '\n';
 
 Parser::PatchKernel(ipsw.Kernel);
-system((std::string("mv -v ") + ipsw.Kernel + " ../Bootchain").c_str());
+system((std::string("cp -v ") + ipsw.Kernel + " ipsdir/").c_str());
+//system((std::string("mv -v ") + ipsw.Kernel + " ../Bootchain").c_str());
 
 std::cout << "[i] Done." << "\n\n";
 
