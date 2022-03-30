@@ -8,8 +8,6 @@ Compiling:
 make
 ```
 
-# No one but YOU is responsible for what happens with the device :)  
-
 All checkm8 compatible devices are supported ig?
 
 
@@ -33,6 +31,7 @@ So your command should look something like:
 ./iRestore -f ipswfile.ipsw -t myblob.shsh2 -d iPad7,5 -i 14.5.1 -b j71bap [-u/-r] -a if you want to add more bootargs to iBEC --pwn will ask you to connect device in DFU. If it found it it will pwn and remove sighcks automatically :)) Good Luck!!
 ```
 
+# No one but YOU is responsible for what happens with the device :) But there shouldn't be much of a problem but just fo sho
 
 
 # Why?
