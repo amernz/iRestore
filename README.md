@@ -8,7 +8,8 @@ Compiling:
 make
 ```
 
-All checkm8 compatible devices are supported ig?
+All checkm8 compatible devices are supported ig?  
+# DO NOT USE '-U' IF YOUR DEVICE IS JAILBROKEN!!
 
 
 ```Usage
