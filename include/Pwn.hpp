@@ -36,68 +36,69 @@ namespace Pwn {
     	auto A11 = strstr((char*)dev->serialnumber, "8015");
   // for t8015
   chdir("Resources");
+  system("sudo chmod +x ipwnder_macosx && sudo chmod +x ipwndfuA11");
 
-  if(!A10)
+  if(A10 != NULL)
   {
   	Info("Found A10 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
   	system("./ipwnder_macosx -p");
   	return 0;
   }
-  else if(!A9)
+  else if(A9 != NULL)
   {
   	Info("Found A9 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
   	system("./ipwnder_macosx -p");
   	return 0;
   }
-  else if(!a9)
+  else if(a9 != NULL)
   {
   	Info("Found A9 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
   	system("./ipwnder_macosx -p");
   	return 0;
   }
-  else if(!A8)
+  else if(A8 != NULL)
   {
   	Info("Found A8 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
   	system("./ipwnder_macosx -p");
   	return 0;
   }
-  else if(!A7)
+  else if(A7 != NULL)
   {
   	Info("Found A7 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
   	system("./ipwnder_macosx -p");
   	return 0;
   }
-  else if(!A6)
+  else if(A6 != NULL)
   {
   	Info("Found A6 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
   	system("./ipwnder_macosx -p");
   	return 0;
   }
-  else if(!A4)
+  else if(A4 != NULL)
   {
   	Info("Found A4 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
   	system("./ipwnder_macosx -p");
   	return 0;
   }
-  else if(!idk1)
+  else if(idk1 != NULL)
   {
   	Info("Found 8922 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
   	system("./ipwnder_macosx -p");
   	return 0;
   }
-  else if(!idk2)
+  else if(idk2 != NULL)
   {
   	Info("Found 8920 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
   	system("./ipwnder_macosx -p");
   	return 0;
   }
-  else if(!A11)
+  else if(A11 != NULL)
   {
   	Info("Found A11 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
   	system("./ipwndfuA11 -p && ./ipwndfuA11 --patch");
   	return 0;
   }
-  Info("The device should now be in DFU Mode.");
+  Info("The device should now be in pwned DFU Mode with signature checks removed.");
   return 0;
   }
 };
