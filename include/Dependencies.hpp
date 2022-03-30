@@ -35,26 +35,26 @@ void Dependencies() {
     std::cout << "[i] Img4 not found. Installing it for you.." << '\n';
     system("git clone https://github.com/xerub/img4lib/ --recursive");
     chdir("img4lib");
-	chdir("lzfse")
-	system("make")
+    chdir("lzfse")
+    system("make")
     chdir("../");
-	system("make")
+    system("make")
     system("cp -v img4 /usr/local/bin");
     system("chmod +x /usr/local/bin/img4");
-	chdir("../")
+    chdir("../")
     system("rm -rf img4lib");
 #endif
 #if defined(__linux__)
     std::cout << "[i] Img4 not found. Installing it for you.." << '\n';
     system("git clone https://github.com/xerub/img4lib/ --recursive");
     chdir("img4lib");
-	chdir("lzfse");
-	system("make");
+    chdir("lzfse");
+    system("make");
     chdir("../");
-	system("make");
+    system("make");
     system("sudo cp -v img4 /usr/local/bin");
     system("sudo chmod +x /usr/local/bin/img4");
-	chdir("../");
+    chdir("../");
     system("rm -rf img4lib");
 #endif
   }
@@ -86,8 +86,7 @@ void Dependencies() {
   std::ifstream kpatcher("/usr/local/bin/Kernel64Patcher");
   if (!kpatcher) {
 #if defined(__APPLE__)
-    std::cerr << "[!] Kernel64Patcher not found. Installing it for you.."
-              << '\n';
+    std::cerr << "[!] Kernel64Patcher not found. Installing it for you.." << '\n';
     system("git clone https://github.com/Ralph0045/Kernel64Patcher.git");
     chdir("Kernel64Patcher");
     system("gcc Kernel64Patcher.c -o Kernel64Patcher");
@@ -97,10 +96,10 @@ void Dependencies() {
 #endif
 #if defined(__linux__)
     std::cerr << "[!] Kernel64Patcher not found. Installing it for you..";
-	system("git clone https://github.com/Ralph0045/Kernel64Patcher.git");
-	chdir("Kernel64Patcher");
+    system("git clone https://github.com/Ralph0045/Kernel64Patcher.git");
+    chdir("Kernel64Patcher");
 	// Copy apple includes to system (mach-o)
-	system("curl -LO https://opensource.apple.com/tarballs/cctools/cctools-927.0.2.tar.gz");
+    system("curl -LO https://opensource.apple.com/tarballs/cctools/cctools-927.0.2.tar.gz");
     system("mkdir tmp");
     system("tar -xvzf cctools-927.0.2.tar.gz -C tmp");
     system("sed -i \'s_#include_//_g\' tmp/cctools-927.0.2/include/mach-o/loader.h");
@@ -112,7 +111,7 @@ void Dependencies() {
     system("sudo chmod +x /usr/local/bin/Kernel64Patcher");
     chdir("..");
 	// Remove apple includes from system
-	system("sudo rm -rf /usr/local/include/architecture/ /usr/local/include/coff/ /usr/local/include/gnu/ /usr/local/include/llvm-c/ /usr/local/include/mach-o/ /usr/local/include/opcode/ /usr/local/include/stuff/ /usr/local/include/xar/ /usr/local/include/cbt/ /usr/local/include/elf/ /usr/local/include/i386/ /usr/local/include/mach/ /usr/local/include/i386/ /usr/local/include/mach/ /usr/local/include/Makefile /usr/local/include/standalone/ /usr/local/include/sys/");
+    system("sudo rm -rf /usr/local/include/architecture/ /usr/local/include/coff/ /usr/local/include/gnu/ /usr/local/include/llvm-c/ /usr/local/include/mach-o/ /usr/local/include/opcode/ /usr/local/include/stuff/ /usr/local/include/xar/ /usr/local/include/cbt/ /usr/local/include/elf/ /usr/local/include/i386/ /usr/local/include/mach/ /usr/local/include/i386/ /usr/local/include/mach/ /usr/local/include/Makefile /usr/local/include/standalone/ /usr/local/include/sys/");
     system("rm -rf Kernel64Patcher");
 #endif
   }
@@ -130,10 +129,10 @@ void Dependencies() {
 #endif
 #if defined(__linux__)
     std::cerr << "[!] Kairos not found. Installing it for you.." << '\n';
-	system("git clone https://github.com/dayt0n/kairos.git");
+    system("git clone https://github.com/dayt0n/kairos.git");
     chdir("kairos");
 	// Copy apple includes to system (mach-o)
-	system("curl -LO https://opensource.apple.com/tarballs/cctools/cctools-927.0.2.tar.gz");
+    system("curl -LO https://opensource.apple.com/tarballs/cctools/cctools-927.0.2.tar.gz");
     system("mkdir tmp");
     system("tar -xvzf cctools-927.0.2.tar.gz -C tmp");
     system("sed -i \'s_#include_//_g\' tmp/cctools-927.0.2/include/mach-o/loader.h");
@@ -142,16 +141,16 @@ void Dependencies() {
     system("rm -rf tmp cctools-927.0.2.tar.gz");
     system("sudo make");
     system("sudo cp -v kairos /usr/local/bin");
-	system("sudo chmod +x /usr/local/bin/kairos");
+    system("sudo chmod +x /usr/local/bin/kairos");
     chdir("..");
 	// Remove apple includes from system
-	system("sudo rm -rf /usr/local/include/architecture/ /usr/local/include/coff/ /usr/local/include/gnu/ /usr/local/include/llvm-c/ /usr/local/include/mach-o/ /usr/local/include/opcode/ /usr/local/include/stuff/ /usr/local/include/xar/ /usr/local/include/cbt/ /usr/local/include/elf/ /usr/local/include/i386/ /usr/local/include/mach/ /usr/local/include/i386/ /usr/local/include/mach/ /usr/local/include/Makefile /usr/local/include/standalone/ /usr/local/include/sys/");
+    system("sudo rm -rf /usr/local/include/architecture/ /usr/local/include/coff/ /usr/local/include/gnu/ /usr/local/include/llvm-c/ /usr/local/include/mach-o/ /usr/local/include/opcode/ /usr/local/include/stuff/ /usr/local/include/xar/ /usr/local/include/cbt/ /usr/local/include/elf/ /usr/local/include/i386/ /usr/local/include/mach/ /usr/local/include/i386/ /usr/local/include/mach/ /usr/local/include/Makefile /usr/local/include/standalone/ /usr/local/include/sys/");
     system("rm -rf kairos");
 #endif
   }
 
-  std::ifstream irecovery_cellar("/usr/local/Cellar/libirecovery/1.0.0/bin/irecovery");
-  std::ifstream irecovery("/usr/local/bin/irecovery");
+    std::ifstream irecovery_cellar("/usr/local/Cellar/libirecovery/1.0.0/bin/irecovery");
+    std::ifstream irecovery("/usr/local/bin/irecovery");
   if (!irecovery || (!irecovery_cellar && !irecovery)) {
 #if defined(__APPLE__)
     std::cerr << "[!] iRecovery not found. Installing it for you.." << '\n';
@@ -162,9 +161,9 @@ void Dependencies() {
     system("curl -LO https://github.com/libimobiledevice/libirecovery/releases/download/1.0.0/libirecovery-1.0.0.tar.bz2");
     system("tar -xvf libirecovery-1.0.0.tar.bz2");
     chdir("libirecovery-1.0.0");
-	system("./configure");
-	system("sudo make install");
-	system("sudo chmod +x /usr/local/bin/irecovery");
+    system("./configure");
+    system("sudo make install");
+    system("sudo chmod +x /usr/local/bin/irecovery");
     chdir("..");
     system("rm -rf libirecovery-1.0.0 libirecovery-1.0.0.tar.bz2 ");
 #endif
@@ -182,12 +181,12 @@ void Dependencies() {
 #endif
 #if defined(__linux__)
     std::cout << "[!] asr64_patcher not found. Installing..." << '\n';
- 	system("git clone https://github.com/exploit3dguy/asr64_patcher.git");
+    system("git clone https://github.com/exploit3dguy/asr64_patcher.git");
     chdir("asr64_patcher");
-	system("sed -i \'1s/^/#include <stdint.h>\\n/\' asr64_patcher.c");
+    system("sed -i \'1s/^/#include <stdint.h>\\n/\' asr64_patcher.c");
     system("make");
-	system("sudo cp -v asr64_patcher /usr/local/bin");
-	system("sudo chmod +x /usr/local/bin/asr64_patcher");
+    system("sudo cp -v asr64_patcher /usr/local/bin");
+    system("sudo chmod +x /usr/local/bin/asr64_patcher");
     chdir("..");
     system("rm -rf asr64_patcher");
 #endif
@@ -201,11 +200,11 @@ void Dependencies() {
 #endif
 #if defined(__linux__)
     std::cout << "[i] ldid not found. Installing it for you..." << '\n';
-	system("git clone https://github.com/xerub/ldid");
+    system("git clone https://github.com/xerub/ldid");
     chdir("ldid");
     system("./make.sh");
     system("sudo cp -v ldid2 /usr/local/bin");
-	system("sudo chmod +x /usr/local/bin/ldid2");
+    system("sudo chmod +x /usr/local/bin/ldid2");
     chdir("..");
     system("rm -rf ldid");
 #endif
@@ -214,7 +213,7 @@ void Dependencies() {
   std::ifstream python("/usr/bin/python");
   if (!python) {
 #if defined(__APPLE__)
-    std::cout << "[i] python not found..." << '\n';
+    std::cout << "[i] python not found... But wait.. That's not possible bruv. Go and downgrade to Big Sur!!" << '\n';
 #endif
 #if defined(__linux__)
     std::cout << "[i] Python not found, please install it using your package manager." << '\n';
