@@ -1,6 +1,7 @@
 # iRestore
 
 A tool to downgrade to unsigned iOS version without its required APTicket
+Only the latest signed SEP is compatible!! So please research it beforehand if the iOS version you're restoring to is compatible :)
 
 
 Compiling:
