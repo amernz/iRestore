@@ -108,7 +108,7 @@ static struct option longopts[] = {
   { "restore", 	    required_argument, NULL , 'r' },
   { "pwn",          no_argument,       NULL , 'p' },
   { "ramdisk", 	    no_argument,       NULL , 's' },
-  { "just-boot"	    no_argument,       NULL , 'n' }, // boot after restore
+  { "just-boot",    no_argument,       NULL , 'n' }, // boot after restore
   { NULL, 0, NULL, 0 }
 };
 
