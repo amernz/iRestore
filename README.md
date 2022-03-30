@@ -28,7 +28,16 @@ All checkm8 compatible devices are supported ig?
 	-s,		--ramdisk      Just boot ssh ramdisk. THIS WILL NOT DOWNGRADE THE DEVICE!!
   ```
 
+So your command should look something like:
+``` example
+./iRestore -f ipswfile.ipsw -t myblob.shsh2 -d iPad7,5 -i 14.5.1 -b j71bap [-u/-r] -a if you want to add more bootargs to iBEC --pwn will ask you to connect device in DFU. If it found it it will pwn and remove sighcks automatically :)) Good Luck!!
+```
+
+
 
 # Why?
 Inferius was not working for me so i made my own :)  
 But still. Try out inferius first i think this one is a bit messy?
+
+# Credits
+Thanks to everyone whose dependencies I'm using :))
