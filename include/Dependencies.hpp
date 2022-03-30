@@ -35,13 +35,13 @@ void Dependencies() {
     std::cout << "[i] Img4 not found. Installing it for you.." << '\n';
     system("git clone https://github.com/xerub/img4lib/ --recursive");
     chdir("img4lib");
-    chdir("lzfse")
-    system("make")
+    chdir("lzfse");
+    system("make");
     chdir("../");
-    system("make")
+    system("make");
     system("cp -v img4 /usr/local/bin");
     system("chmod +x /usr/local/bin/img4");
-    chdir("../")
+    chdir("../");
     system("rm -rf img4lib");
 #endif
 #if defined(__linux__)
