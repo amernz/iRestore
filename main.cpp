@@ -176,7 +176,12 @@ sleep(2);
 std::cout << RED << "Going to restore the device. If you want to stop now's your chance." << RESET << '\n';
 sleep(1);
 
-system("cp -v ../Resources/futurerestore .");
+#if defined(__APPLE__)
+	system("cp -v ../Resources/futurerestore-macos ./futurerestore");
+#endif
+#if defined(__linux__)
+	system("cp -v ../Resources/futurerestore-linux ./futurerestore");
+#endif
 
 for(auto &i : cellular){
 	if(identifier == i){
