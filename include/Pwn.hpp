@@ -38,7 +38,7 @@ namespace Pwn {
 
   chdir("Resources");
 
-if defined(__APPLE__)
+#if defined(__APPLE__)
 	std::string ipwnder = "./ipwnder_macosx -p";
 #endif
 #if defined(__linux__)
