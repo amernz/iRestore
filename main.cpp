@@ -1,4 +1,3 @@
-
 /* Copyright (c) 2022 Dr238 */
 
 #include "include/Parser.hpp"
@@ -61,6 +60,7 @@ Parser::FirmwareKeysPage(identifier, version);
 Parser::iBSS(Parser::tolower(board));
 Parser::iBEC(Parser::tolower(board));
 Parser::KernelCache(Parser::tolower(board));
+Parser::GetRestoreLogo();
 if(Update == true){
 	Parser::GetUpdateRamdisk();
 }
@@ -86,23 +86,22 @@ system("kairos ibss.raw ibss.pwn");
 
 system((std::string("rm ") + ipsw.iBSS + " && rm " + ipsw.iBEC).c_str());
 
-std::cout << "[?] If you wish to enter custom bootargs now is your time! If you don't have any boot args just press enter '-v' is already set : ";
+std::cout << "[?] If you wish to enter custom bootargs now is your time! If you don't have any boot args just press enter '-progress -restore rd=md0 -v' is already set : ";
 
 if(std::cin.get() == '\n'){
-	system("kairos ibec.raw ibec.pwn -b \"-v\"");
+	system("kairos ibec.raw ibec.pwn -b \"-progress -restore rd=md0\"");
 }
 else {
-	system((std::string("kairos ibec.raw ibec.pwn -b ") + "\"-v " + bootargs + "\"").c_str());
+	system((std::string("kairos ibec.raw ibec.pwn -b ") + "\"-progress -restore rd=md0 -v " + bootargs + "\"").c_str());
 }
 
 system((std::string("img4 -i ibss.pwn -o ") + ipsw.iBSS + " -M IM4M -A -T ibss").c_str());
 system((std::string("img4 -i ibec.pwn -o ") + ipsw.iBEC + " -M IM4M -A -T ibec").c_str());
 
-chdir("..");
-mkdir("Bootchain", S_IRWXU);
 chdir((std::string("WD_Restore_") + identifier + "_" + version).c_str());
 
-system("mv -v iBSS.* ../Bootchain && mv -v iBEC.* ../Bootchain");
+system((std::string("cp -v ") + ipsw.iBSS + " ipswdir/Firmware/dfu").c_str());
+system((std::string("cp -v ") + ipsw.iBEC + " ipswdir/Firmware/dfu").c_str());
 
 std::cout << "[i] Done." << "\n\n";
 
@@ -110,9 +109,7 @@ std::cout << "[i] Done." << "\n\n";
 std::cout << "[3] Patching amfi.." << '\n';
 
 Parser::PatchKernel(ipsw.Kernel);
-system((std::string("cp -v ") + ipsw.Kernel + " ipsdir/").c_str());
-//system((std::string("mv -v ") + ipsw.Kernel + " ../Bootchain").c_str());
-
+system((std::string("cp -v ") + ipsw.Kernel + " ipswdir/").c_str());
 std::cout << "[i] Done." << "\n\n";
 
 std::cout << "[4] Getting and patching asr.." << '\n';
@@ -129,84 +126,38 @@ Parser::GetnPatchasr(ipsw.rdpath);
 Parser::Detachrd(ipsw.rdpath);
 
 if(Restore == true){
-	system((std::string("mv -v ramdisk.dmg ") + ipsw.RRamdisk).c_str());
+	system((std::string("img4 -i ramdisk.dmg -o ") + ipsw.RRamdisk + " -M IM4M -A -T rdsk").c_str());
 	system((std::string("cp -v ") + ipsw.RRamdisk + " ipswdir").c_str());
+	chdir("ipswdir/Firmware");
+	system((std::string("img4 -i ") + ipsw.RRamdisk + ".trustcache " + "-o " + ipsw.RRamdisk + ".trustcache -M ../../IM4M -T rtsc").c_str());
+	chdir("../..");
 }
 else if(Update == true){
-	system((std::string("mv -v ramdisk.dmg ") + ipsw.URamdisk).c_str());
+	system((std::string("img4 -i ramdisk.dmg -o ") + ipsw.URamdisk + " -M IM4M -A -T rdsk").c_str());
 	system((std::string("cp -v ") + ipsw.URamdisk + " ipswdir").c_str());
+	chdir("ipswdir/Firmware");
+	system((std::string("img4 -i ") + ipsw.URamdisk + ".trustcache " + "-o " + ipsw.URamdisk + ".trustcache -M ../../IM4M -T rtsc").c_str());
+	chdir("../..");
 }
 
 std::cout << "[i] Done." << "\n\n";
 
-if(SSHRamdisk == true){
-	Parser::Devicetree(board);
-	system((std::string("img4 -i ") + ipsw.DeviceTree + " -o DeviceTree.img4 -M IM4M -T rdtr").c_str());
-	system("mv -v DeviceTree.img4 ../Bootchain");// create if statement that looks if sshramdisk true get ramdisk trustcache
-}
+std::cout << "[5] Signing RestoreLogo with ticket..." << '\n';
 
-std::cout << "[5] Packing ipsw dir back.." << '\n';
+chdir("ipswdir/Firmware/all_flash");
+system((std::string("img4 -i ") + ipsw.RestoreLogo + " -o " + ipsw.RestoreLogo + " -M ../../../IM4M -T logo").c_str());
+system("pwd");
+chdir("../../..");
 
-system("zip -r ipsw.zip ipswdir");
+std::cout << "[6] Signing DeviceTree with ticket..." << '\n';
 
-std::cout << "[i] Done!" << '\n';
-sleep(1);
+Parser::Devicetree(board);
+system((std::string("img4 -i ") + ipsw.DeviceTree + " -o " + ipsw.DeviceTree + " -M IM4M -T rdtr").c_str());
+system((std::string("cp -v ") + ipsw.DeviceTree + " ipswdir/Firmware/all_flash/").c_str());
 
-std::cout << "[i] Everything should be done now.. The device is going to boot in a few seconds and after that restore." << '\n';
-
-Info("Sending iBSS...\n");
-
-chdir("../Bootchain");
-system((std::string("irecovery -f ") + ipsw.iBSS).c_str());
-
-Info("Done.\n\n");
-
-Info("Sending iBEC...\n");
-
-system((std::string("irecovery -f ") + ipsw.iBEC).c_str());
-
-Info("Done.\n\n");
-
-chdir((std::string("../WD_Restore_") + identifier + "_" + version).c_str());
-
-Info("The device should now be in recovery mode with no recovery logo. The restore process will begin in a few seconds.\n");
-sleep(2);
-
-	chdir((std::string("WD_Restore_") + identifier + "_" + version).c_str());
-std::cout << RED << "Going to restore the device. If you want to stop now's your chance." << RESET << '\n';
-sleep(1);
-
-#if defined(__APPLE__)
-	system("cp -v ../Resources/futurerestore-macos ./futurerestore");
-#endif
-#if defined(__linux__)
-	system("cp -v ../Resources/futurerestore-linux ./futurerestore");
-#endif
-
-for(auto &i : cellular){
-	if(identifier == i){
-		Info("The device is cellular. Using latest baseband.\n");
-		Info("Restoring...\n\n");
-		if(Restore == true){
-		system((std::string("./futurerestore -t ") + blob + " --latest-sep --latest-baseband ipsw.zip").c_str());
-		Info("If everything went correctly the device should now be booting. :]\n");
-		}
-		else if(Update == true){
-			system((std::string("./futurerestore -t ") + blob + " -u --latest-sep --latest-baseband ipsw.zip").c_str());
-			Info("If everything went correctly the device should now be booting. :]\n");
-		}
-	}
-}
-
-Info("Restoring...\n\n");
-if(Restore == true){
-system((std::string("./futurerestore -t ") + blob + " --latest-sep --no-baseband ipsw.zip").c_str());
-Info("Restoring...\n\n");
-}
-else if(Update == true){
-	system((std::string("./futurerestore -t ") + blob + " -u --latest-sep --no-baseband ipsw.zip").c_str());
-	Info("Restoring...\n\n");
-}
-
+std::cout << "[i] Done." << '\n';
+	
+// have to use idevicerestore futurerestore was trippin
 return 0;
 }
+

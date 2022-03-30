@@ -35,6 +35,7 @@ So your command should look something like:
 
 # No one but YOU is responsible for what happens with the device :) But there shouldn't be much of a problem but just fo sho
 
+FDR Trippin almost there!
 
 # Why?
 Inferius was not working for me so i made my own :)  
