@@ -69,6 +69,7 @@ struct Parsers
 {
 	std::string StringParse = "<string>";
 	std::string StringEndParse = "</string>";
+	std::string RmSpan = "</span>";
 };
 
 struct firmware
