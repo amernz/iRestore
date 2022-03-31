@@ -106,7 +106,7 @@ namespace Pwn {
   {
   	Info("Found A11 Device. Putting device in pwned DFU Mode and removing signature checks...\n");
 	chdir("ipwndfuA11");
-  	system("./ipwndfuA11 -p && ./ipwndfuA11 --patch");
+  	system("./ipwndfu -p && ./ipwndfu --patch");
   	return 0;
   }
   else if(A10X != NULL)
