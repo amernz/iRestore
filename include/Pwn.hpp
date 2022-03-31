@@ -113,7 +113,7 @@ namespace Pwn {
   {
 	  Info("Found A10X Device. Putting device in pwned DFU Mode and removing signature checks...\n");
 	  chdir("ipwndfu_public");
-	  system("sudo ./ipwndfu -p");
+	  system("sudo ./ipwndfuA10X -p");
 	  system("python rmsigchks.py");
 	  return 0;
   }
